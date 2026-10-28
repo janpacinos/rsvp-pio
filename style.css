@@ -86,8 +86,13 @@
     .attire-layout h2 { font: 400 clamp(42px, 5vw, 62px)/1 var(--serif); margin: 14px 0 20px; }
     .attire-layout p { color: var(--muted); }
     .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 24px 0; }
-    .swatch { text-align: center; font-size: 9px; letter-spacing: .05em; color: var(--muted); }
+    .swatch { position: relative; text-align: center; font-size: 9px; letter-spacing: .05em; color: var(--muted); }
     .swatch-color { height: 85px; margin-bottom: 9px; border: 1px solid rgba(0,0,0,.04); }
+    .swatch-with-x .swatch-color { position: relative; }
+    .swatch-with-x .swatch-color:before,
+    .swatch-with-x .swatch-color:after { position: absolute; top: 50%; left: 50%; width: 58%; height: 1px; background: #702d3a; content: ""; }
+    .swatch-with-x .swatch-color:before { transform: translate(-50%, -50%) rotate(45deg); }
+    .swatch-with-x .swatch-color:after { transform: translate(-50%, -50%) rotate(-45deg); }
     .note { border-left: 2px solid var(--gold); padding: 13px 16px; background: #f8f5ed; font-size: 11px; color: #6e665b; }
     .gift { background: #e9ebdf; text-align: center; }
     .gift-icon { font-size: 30px; color: var(--sage-dark); }
@@ -206,7 +211,7 @@
       .attire-layout { gap: 24px; }
       .events-grid { grid-template-columns: 1fr 1fr; }
       .party-grid { gap: 8px; }
-      .swatch-color { height: 65px; }
+      .swatch-color { width: 56px; height: 56px; }
       .venue-card h3 { font-size: 31px; }
     }
     @media (max-width: 430px) {
@@ -309,14 +314,14 @@
     .section { padding:42px 20px; }
     .section-head { margin-bottom:25px; }
     .section-head h2 { color:#282620; font-size:clamp(28px,5vw,36px); letter-spacing:.02em; }
-    #schedule { border-bottom:1px solid #bfb7aa; background:#f8f4ee; }
-    #schedule .section-head { margin-bottom:38px; }
-    #schedule .section-head h2 { color:#702d3a; font-size:clamp(28px,5vw,36px); letter-spacing:.02em; }
-    #schedule .events-grid { position:relative; display:flex; flex-direction:column; gap:0; width:min(900px,100%); margin:0 auto; padding:0; border:0; background:transparent; }
-    #schedule .events-grid:before { position:absolute; top:0; bottom:0; left:50%; width:4px; background:#c5a56c; content:""; transform:translateX(-50%); }
-    #schedule .event { display:grid; grid-template-columns:1fr 1fr; align-items:center; min-height:145px; padding:18px 12px; background:transparent; text-align:initial; }
-    #schedule .event .event-name { grid-column:1; margin:0; padding-right:28px; color:#702d3a; font:400 25px/1.2 var(--serif); letter-spacing:.015em; text-align:right; text-transform:none; }
-    #schedule .event .time { grid-column:2; grid-row:1; padding-left:38px; color:#81766e; font:400 25px/1.2 var(--serif); }
+    #schedule { border-bottom:1px solid #d8d0c4; background:#fffef8; }
+    #schedule .section-head { margin-bottom:30px; }
+    #schedule .section-head h2 { color:#702d3a; font:500 clamp(27px,4vw,34px)/1.1 var(--sans); letter-spacing:.18em; }
+    #schedule .events-grid { display:flex; flex-direction:column; width:min(520px,100%); margin:0 auto; padding:0; border:0; background:transparent; }
+    #schedule .event { display:grid; grid-template-columns:1fr 1fr; align-items:center; min-height:58px; padding:0; background:transparent; }
+    #schedule .event + .event { border-top:1px solid #d8d0c4; }
+    #schedule .event .time { grid-column:1; grid-row:1; padding:0 24px 0 0; color:#3f3b35; font:400 12px/1.25 var(--sans); letter-spacing:.16em; text-align:right; }
+    #schedule .event .event-name { grid-column:2; grid-row:1; margin:0; padding:0 0 0 24px; color:#702d3a; font:400 14px/1.25 var(--serif); letter-spacing:.23em; text-align:left; text-transform:uppercase; }
     .entourage { background:#fffef8; }
     .entourage .section-head { margin-bottom:10px; }
     .party-block { margin:24px 0; }
@@ -328,6 +333,7 @@
     #attire { border-top:1px solid #bfb7aa; border-bottom:1px solid #bfb7aa; }
     .attire-layout { display:flex; flex-direction:column; text-align:center; gap:12px; max-width:600px; }
     .attire-layout h2 { color:#282620; font-size:36px; margin:5px 0 14px; }
+    #attire .pdf-emblem img { width:min(380px,85vw); }
     .attire-layout p { max-width:500px; margin:8px auto; }
     .swatches { width:min(440px,100%); margin:18px auto; gap:10px; }
     .swatch-color { width:56px; height:56px; margin:0 auto 9px; border-radius:50%; }
@@ -366,8 +372,9 @@
     .rsvp-page form { width:min(420px, 100%); margin:0 auto; }
     .rsvp-search-fields { display:grid; gap:14px; }
     .rsvp-page .field { align-items:center; text-align:center; }
-    .rsvp-page .field input { text-align:center; }
-    .rsvp-page form .btn { display:flex; margin:18px auto 0; }
+    .rsvp-page .field input { text-align:center; font-size:16px; }
+    .rsvp-page form .btn { display:flex; margin:18px auto 0; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+    .rsvp-page .field input { touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
     .rsvp-page form .form-status { min-height:1.5em; color:#777166; }
     .rsvp-page form .btn:disabled { cursor:wait; opacity:.65; }
     .rsvp-page .rsvp-back { text-align:center; margin:24px 0 0; }
@@ -412,7 +419,7 @@
       .section { padding:36px 18px; }
       .pdf-photo { aspect-ratio:4/3; }
       .party-grid { grid-template-columns:1fr 1fr; }
-      .swatch-color { height:42px; }
+      .swatch-color { width:42px; height:42px; }
     }
 
 
@@ -449,11 +456,12 @@
       .intro h2 { font-size: clamp(29px, 8vw, 39px); }
       .section { padding: 46px 18px; }
       .pdf-music-toggle { right: 12px; bottom: 12px; }
-      #schedule .section-head { margin-bottom:28px; }
-      #schedule .events-grid:before { left:50%; }
-      #schedule .event { grid-template-columns:1fr 1fr; min-height:112px; padding:14px 0; }
-      #schedule .event .event-name { padding-right:14px; font-size:clamp(18px,5vw,25px); }
-      #schedule .event .time { padding-left:20px; font-size:clamp(18px,5vw,25px); }
+      #schedule .section-head { margin-bottom:24px; }
+      #schedule .section-head h2 { font-size:24px; }
+      #schedule .events-grid { width:min(420px,100%); }
+      #schedule .event { grid-template-columns:1fr 1fr; min-height:54px; }
+      #schedule .event .time { padding-right:14px; font-size:10px; }
+      #schedule .event .event-name { padding-left:14px; font-size:12px; letter-spacing:.18em; }
       #faq .faq-card { margin-bottom:16px; padding:32px 20px; }
       #faq .faq-card .faq-question { gap:15px; font-size:clamp(18px,5vw,22px); }
       #faq .faq-icon { width:70px; height:70px; }
