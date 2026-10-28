@@ -302,6 +302,9 @@
 
     rsvpLookupForm.addEventListener('submit', async event => {
       event.preventDefault();
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
       const data = new FormData(rsvpLookupForm);
       const firstName = String(data.get('firstName') || '').trim();
       const lastName = String(data.get('lastName') || '').trim();
@@ -321,7 +324,7 @@
         searchStatus.textContent = '';
         renderReservation(reservation, firstName, lastName);
         reservationResult.querySelector('.reservation-summary').scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'auto',
           block: 'start'
         });
       } catch (error) {
