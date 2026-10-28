@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffef8">
+  <meta name="description" content="Look up your reserved seats and confirm attendance at Pio & Joyce's wedding.">
+  <title>Confirm Your Attendance | Pio & Joyce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="section rsvp rsvp-page" id="rsvp">
+      <div class="rsvp-card">
+        <div class="pdf-emblem"><img src="src/toast-png.png" alt="Toast illustration"></div>
+        <h1 class="serif rsvp-title">Confirm Your Attendance</h1>
+        <p class="lead">Search with your first and last name to see your reservation and companions.</p>
+
+        <form id="rsvpLookupForm">
+          <div class="rsvp-search-fields">
+            <div class="field">
+              <label for="guestFirstName">First name</label>
+              <input id="guestFirstName" name="firstName" type="text" autocomplete="given-name" required>
+            </div>
+            <div class="field">
+              <label for="guestLastName">Last name</label>
+              <input id="guestLastName" name="lastName" type="text" autocomplete="family-name" required>
+            </div>
+          </div>
+          <button class="btn" type="submit">Find My Reservation</button>
+          <div class="form-status" id="searchStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <div id="reservationResult" class="reservation-result" hidden></div>
+        <p class="rsvp-back"><a class="backtop" href="index.html">← Back to the invitation</a></p>
+      </div>
+    </section>
+  </main>
+  <script src="rsvp-config.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
