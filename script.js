@@ -324,7 +324,7 @@
 
       const signoff = document.createElement('p');
       signoff.className = 'reservation-expired-signoff';
-      signoff.textContent = 'Love, Pio & Joyce';
+      signoff.innerHTML = 'Love, <br>Pio & Joyce';
 
       notice.append(heading, message, signoff);
       reservationResult.replaceChildren(notice);
