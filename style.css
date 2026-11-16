@@ -53,8 +53,9 @@
     .hero-date { text-transform: uppercase; letter-spacing: .17em; font-size: 20px; margin: 26px 0 7px; }
     .hero-place { color: var(--muted); font-size: 12px; max-width: 480px; margin: auto; }
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-    .hero-photo { width: min(400px, 76vw); aspect-ratio: 4/3; margin: 34px auto 0; border: 9px solid white; box-shadow: var(--shadow); background: linear-gradient(135deg, #e6d9c7, #b9c0a9); position: relative; overflow: hidden; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo-stack { display: flex; flex-direction: column; gap: 0; margin-top: 34px; }
+    .hero-photo { width: min(2048px, 100%); margin: 0 auto; border: 0; box-shadow: none; background: linear-gradient(135deg, #e6d9c7, #b9c0a9); }
+    .hero-photo img { display: block; width: 100%; height: auto; }
     .photo-placeholder { height: 100%; min-height: 100%; display: grid; place-items: center; text-align: center; padding: 24px; color: #655b4d; background: linear-gradient(140deg, rgba(255,255,255,.22), rgba(166,173,147,.24)); }
     .photo-placeholder span { display: block; font: 400 29px/1.2 var(--serif); }
     .photo-placeholder small { display: block; margin-top: 8px; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
@@ -290,7 +291,7 @@
     .pdf-cover .hero-date span { padding:0 5px; color:#a98449; }
     .pdf-cover .hero-place { color:#5d584e; font-size:12px; line-height:1.8; }
     .pdf-cover .cover-venue-label { color:#75664f; font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; }
-    .pdf-cover .hero-photo { width:100%; aspect-ratio:16/9; margin:26px 0 0; border:0; box-shadow:none; background:#f1ece3; }
+    .pdf-cover .hero-photo { width:100%; aspect-ratio:auto; margin:0; border:0; box-shadow:none; background:#f1ece3; }
     .photo-placeholder { background:linear-gradient(140deg,#f3eee5,#e5e1d5); color:#7d7468; }
     .photo-placeholder span { font-size:23px; color:#75695a; }
     .photo-placeholder small { letter-spacing:.1em; }
