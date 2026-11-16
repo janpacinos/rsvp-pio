@@ -1,5 +1,6 @@
 // Pio & Joyce Wedding Website interactions
 (() => {
+  const RSVP_DEADLINE = '2026-11-28';
   const musicAudio = document.getElementById('musicAudio');
   const musicToggle = document.getElementById('musicToggle');
   let musicReady = false;
@@ -161,8 +162,8 @@
       const deadlineLabel = document.createElement('span');
       deadlineLabel.textContent = 'RSVP deadline';
       const deadlineDate = document.createElement('time');
-      deadlineDate.dateTime = '2026-11-20';
-      deadlineDate.textContent = 'November 20, 2026';
+      deadlineDate.dateTime = RSVP_DEADLINE;
+      deadlineDate.textContent = 'November 28, 2026';
       deadline.append(deadlineLabel, deadlineDate);
       summary.appendChild(deadline);
 
@@ -300,6 +301,36 @@
       reservationResult.hidden = false;
     }
 
+    function isRsvpDeadlinePassed() {
+      const [year, month, day] = RSVP_DEADLINE.split('-').map(Number);
+      const dayAfterDeadline = new Date(year, month - 1, day + 1);
+      dayAfterDeadline.setHours(0, 0, 0, 0);
+      return Date.now() >= dayAfterDeadline.getTime();
+    }
+
+    function renderMissedRsvpNotice() {
+      const notice = document.createElement('section');
+      notice.className = 'reservation-summary reservation-expired';
+      notice.setAttribute('aria-labelledby', 'missedRsvpTitle');
+
+      const heading = document.createElement('h2');
+      heading.id = 'missedRsvpTitle';
+      heading.className = 'reservation-expired-title serif';
+      heading.textContent = 'Missed RSVP';
+
+      const message = document.createElement('p');
+      message.className = 'reservation-expired-message';
+      message.textContent = "We're so sorry you can't make it to our wedding. Our RSVP deadline has passed, and you unfortunately did not respond. We would have loved to have you attend, but final numbers have now been turned in, and your presence will be missed.";
+
+      const signoff = document.createElement('p');
+      signoff.className = 'reservation-expired-signoff';
+      signoff.textContent = 'Love, Pio & Joyce';
+
+      notice.append(heading, message, signoff);
+      reservationResult.replaceChildren(notice);
+      reservationResult.hidden = false;
+    }
+
     rsvpLookupForm.addEventListener('submit', async event => {
       event.preventDefault();
       if (document.activeElement instanceof HTMLElement) {
@@ -308,11 +339,21 @@
       const data = new FormData(rsvpLookupForm);
       const firstName = String(data.get('firstName') || '').trim();
       const lastName = String(data.get('lastName') || '').trim();
-      searchStatus.textContent = 'Searching the guest list…';
       reservationResult.hidden = true;
       submitButton.disabled = true;
 
       try {
+        if (isRsvpDeadlinePassed()) {
+          searchStatus.textContent = '';
+          renderMissedRsvpNotice();
+          reservationResult.querySelector('.reservation-expired').scrollIntoView({
+            behavior: 'auto',
+            block: 'start'
+          });
+          return;
+        }
+
+        searchStatus.textContent = 'Searching the guest list…';
         const reservation = await lookupReservation(firstName, lastName);
         if (!reservation || !reservation.ok) {
           searchStatus.textContent = reservation && reservation.error

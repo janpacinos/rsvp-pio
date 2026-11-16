@@ -380,6 +380,9 @@
     .rsvp-page .rsvp-back { text-align:center; margin:24px 0 0; }
     .reservation-result { margin-top:24px; text-align:left; }
     .reservation-summary { border:1px solid #e4d4c2; border-radius:20px; padding:24px 18px 18px; text-align:center; background:#fffefa; }
+    .reservation-expired-title { margin:0 0 14px; color:#4c3e36; font:500 clamp(31px, 7vw, 43px)/1.08 var(--serif); }
+    .reservation-expired-message { max-width:470px; margin:0 auto; color:#65584e; font-size:14px; }
+    .reservation-expired-signoff { margin:18px 0 0; color:#65584e; font:400 18px/1.35 var(--serif); }
     .reservation-couple { margin:0 0 8px; color:#65584e; font:400 18px/1.35 var(--serif); }
     .reservation-name { margin:0 auto 10px; color:#4c3e36; font:500 clamp(31px, 7vw, 43px)/1.08 var(--serif); letter-spacing:.06em; text-transform:uppercase; overflow-wrap:anywhere; }
     .reservation-lead { margin:0; color:#777f90; font-size:14px; }
